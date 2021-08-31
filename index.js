@@ -1,29 +1,7 @@
 /* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
-// USING DATE FOR CREATION FORMS FOR GOALS AND ADD EXPENSE BY MORNING
-// USE MOMENT TO CALC WEEKLY DAILY AND MONTHLY EXPENSE, NO TABLES NEEDED
-// NAVBAR
-// USER PAGE IF GOT TIME
-// UPLOAD TO EC2
-
-// COMFORTABLE
-// PAST LIST OF EXPENSES IF CLICK ON TABLE NAME
-// IF IMPOSSIBLE TO SAVE ENOUGH MONEY WITHIN WHATEVER MONTHS USER WANTED TO, DO IT FOR THEM AUTOMATICALLY?
-// SQL QUERY TO SELECT AND RENDER DATA IN HOMEPAGE AFTER LOGIN
-// DROP DOWN NAVBAR ON HOME PAGE WHEN LOGGED IN
-// EDITING SHOULD HAVE PRE-EXISTING DATA FOR THEM IN VALUE ALREADY IF LOGGED IN
 // LONG TERM = FLAT 10%/15%
 // NET SAVINGS FOR
-
-// const results = Promise.all([
-//   pool.query('SELECT * FROM recipes'),
-//   pool.query('SELECT * FROM users'),
-//   pool.query('SELECT * FROM categories'),
-//   // allResults is an array of results whose elements correspond
-//   // to the elements in the Promise.all parameter array
-// ]).then((allResults) => {
-//   console.log(allResults);
-// });
 import express from 'express';
 // import methodOverride from 'method-override';
 // eslint-disable-next-line import/no-unresolved
@@ -44,12 +22,25 @@ app.use(cookieParser());
 const { Pool } = pg;
 
 // set the way we will connect to the server
-const pgConnectionConfigs = {
+let pgConnectionConfigs;
+if (process.env.ENV === 'PRODUCTION') {
+  // determine how we connect to the remote Postgres server
+  pgConnectionConfigs = {
+    user: 'postgres',
+    // set DB_PASSWORD as an environment variable for security.
+    password: process.env.DB_PASSWORD,
+    host: 'localhost',
+    database: 'cutdown',
+    port: 5432,
+  };
+}
+else { pgConnectionConfigs = {
   user: 'justin',
   host: 'localhost',
   database: 'cutdown',
   port: 5432, // Postgres server always runs on this port
 };
+}
 // create the var we'll use
 const pool = new Pool(pgConnectionConfigs);
 
