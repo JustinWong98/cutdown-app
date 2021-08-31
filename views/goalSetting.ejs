@@ -1,0 +1,103 @@
+<%- include ('header', {title: "Setting your goals"}) %>
+<a href="getcutdown">
+<i class="fas fa-chevron-left fa-3x"></i>
+</a>
+<div class="container goal-container">
+  <div class="row">
+    <form method = "POST" id ="goalForm" class ="main-form" action = '/goalsetting'>
+      <div
+  class="title-div font-weight-bolder"
+  style="font-size: medium; padding: 0 10% 0 15%;"
+>
+  What are you saving up for?
+</div>
+    <div class="summary flex-center" style = "margin-bottom: 5%">
+      <input type = "text" name = "goalName" id = "goalName">
+    </div>
+    <div
+  class="title-div font-weight-bolder"
+  style="font-size: medium; padding: 0 10% 0 6%;"
+>
+  How much does it cost?
+</div>
+<div class="summary flex-center">
+      <input type = "number" name = "goalCost" id = "goalCost" min = "1" max = "10000">
+    </div>
+  </div>
+</div>
+<div class="h-divider"></div>
+<div
+  class="title-div font-weight-bolder"
+  style="font-size: medium; padding: 0 10% 0 15%; margin-bottom: 5%"
+>
+  Please why this is important to you. We will use this to motivate you!
+</div>
+<div class = "summary flex-center">
+  <textarea
+    rows="4"
+    cols="46"
+    name="mainGoal"
+    id = "mainGoal"
+    form="goalForm"
+    placeholder="Enter here"
+  ></textarea>
+  </div>
+  <div class ="hidden">
+ <input type="date" name="date" id="myDate" />
+  </div>
+<div class="h-divider"></div>
+<div
+  class="title-div font-weight-bolder"
+  style="font-size: medium; padding: 0 10% 0 15%;"
+>
+  In how many months do you wish to achieve your goal(s)?
+</div>
+<div class="d-flex justify-content-center my-4">
+    <div class="d-flex justify-content-center my-4 flex-center summary">
+      <input
+        type="range"
+        class="custom-range"
+        min="1"
+        max="12"
+        step="1"
+        id="months-goal"
+        name="months-goal"
+      />
+      <div class="font-weight-bold text-primary ml-2 mt-1 valueSpan summary" id = 'months-display'>
+      </div>
+      </div>
+</div>
+<div class="next-button">
+  <button type="submit" class="btn btn-primary">
+    Next
+  </button>
+</div>
+</form>
+<script>
+var slider = document.getElementById("months-goal");
+var output = document.getElementById("months-display");
+output.innerHTML = `${slider.value} month(s)`; // Display the default slider value
+
+// Update the current slider value (each time you drag the slider handle)
+      slider.oninput = function () {
+        output.innerHTML = `${this.value} month(s)`;
+      };
+</script>
+    <script>
+      function SetDate() {
+        var date = new Date();
+
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+
+        var today = year + "-" + month + "-" + day;
+
+        document.getElementById("myDate").value = today;
+      }
+    </script>
+    <body onload="SetDate();">
+<%- include ('footer') %>

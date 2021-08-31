@@ -1,0 +1,105 @@
+<%- include ('header', {title: "CutDown"}) %> <%- include ('navbar') %>
+<div class="summary flex-center">
+  <h4 style="color: black; font-weight: bolder">
+    Good day <%= homeData.firstName %> <%= homeData.lastName %>
+  </h4>
+  <a href="addexpense">
+    <i class="fas fa-plus-circle fa-3x" style="margin: 3vh 0"></i>
+  </a>
+  <h4>Here are your expenditure breakdowns so far</h4>
+  <h2 style="font-weight: bolder">Daily</h2>
+  <h4 style="font-style: italic">26 August 2021</h4>
+</div>
+<div class="container" style="width: 80%; margin-top: 5vh">
+  <div class="row">
+    <div class="col-3 flex-center"><h4><%= homeData.cat1Name %></h4></div>
+    <div class="col-3 flex-center">
+      <h4>$<%= dailyExpenses.cat1 %></h4>
+    </div>
+    <div class="col-3 flex-center">
+      <h4>$<%= homeData.cat1DailyLimit %></h4>
+    </div>
+    <div class="col-3 flex-center">
+      <h4><%= dailyExpenses.cat1DailyRatio %></h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3 flex-center"><h4><%= homeData.cat2Name %></h4></div>
+    <div class="col-3 flex-center"><h4>$<%= dailyExpenses.cat2 %></h4></div>
+    <div class="col-3 flex-center">
+      <h4>$<%= homeData.cat2DailyLimit %></h4>
+    </div>
+    <div class="col-3 flex-center">
+      <h4><%= dailyExpenses.cat2DailyRatio %></h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3 flex-center"><h4><%= homeData.cat3Name %></h4></div>
+    <div class="col-3 flex-center"><h4>$<%= dailyExpenses.cat3 %></h4></div>
+    <div class="col-3 flex-center">
+      <h4>$<%= homeData.cat3DailyLimit %></h4>
+    </div>
+    <div class="col-3 flex-center">
+      <h4><%= dailyExpenses.cat3DailyRatio %></h4>
+    </div>
+  </div>
+</div>
+<div class="h-divider"></div>
+<h2 style="font-weight: bolder">Weekly</h2>
+<!-- <h4 style="font-style: italic">26 August 2021</h4> -->
+<div class="container" style="width: 80%; margin-top: 5vh">
+  <div class="row">
+    <div class="col-3 flex-center"><h4><%= homeData.cat1Name %></h4></div>
+    <div class="col-3 flex-center"><h4>$<%= dailyExpenses.cat1 %></h4></div>
+    <div class="col-3 flex-center">
+      <h4>$<%= homeData.cat1WeeklyLimit %></h4>
+    </div>
+    <div class="col-3 flex-center"><h4>75%</h4></div>
+  </div>
+  <div class="row">
+    <div class="col-3 flex-center"><h4><%= homeData.cat2Name %></h4></div>
+    <div class="col-3 flex-center"><h4>$<%= dailyExpenses.cat2 %></h4></div>
+    <div class="col-3 flex-center">
+      <h4>$<%= homeData.cat2WeeklyLimit %></h4>
+    </div>
+    <div class="col-3 flex-center"><h4>75%</h4></div>
+  </div>
+  <div class="row">
+    <div class="col-3 flex-center"><h4><%= homeData.cat3Name %></h4></div>
+    <div class="col-3 flex-center"><h4>$<%= dailyExpenses.cat3 %></h4></div>
+    <div class="col-3 flex-center">
+      <h4>$<%= homeData.cat3WeeklyLimit %></h4>
+    </div>
+    <div class="col-3 flex-center"><h4>75%</h4></div>
+  </div>
+</div>
+<div class="h-divider"></div>
+<h2 style="font-weight: bolder">Monthly</h2>
+<!-- <h4 style="font-style: italic">26 August 2021</h4> -->
+<div class="container" style="width: 80%; margin-top: 5vh">
+  <div class="row">
+    <div class="col-3 flex-center"><h4><%= homeData.cat1Name %></h4></div>
+    <div class="col-3 flex-center"><h4>$15.00</h4></div>
+    <div class="col-3 flex-center">
+      <h4>$<%= homeData.cat1MonthlyLimit %></h4>
+    </div>
+    <div class="col-3 flex-center"><h4>75%</h4></div>
+  </div>
+  <div class="row">
+    <div class="col-3 flex-center"><h4><%= homeData.cat2Name %></h4></div>
+    <div class="col-3 flex-center"><h4>$15.00</h4></div>
+    <div class="col-3 flex-center">
+      <h4>$<%= homeData.cat2MonthlyLimit %></h4>
+    </div>
+    <div class="col-3 flex-center"><h4>75%</h4></div>
+  </div>
+  <div class="row">
+    <div class="col-3 flex-center"><h4><%= homeData.cat3Name %></h4></div>
+    <div class="col-3 flex-center"><h4>$15.00</h4></div>
+    <div class="col-3 flex-center">
+      <h4>$<%= homeData.cat3MonthlyLimit %></h4>
+    </div>
+    <div class="col-3 flex-center"><h4>75%</h4></div>
+  </div>
+</div>
+<%- include ('footer') %>

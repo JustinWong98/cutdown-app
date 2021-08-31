@@ -1,0 +1,98 @@
+  <%- include ('header', {title: "Sign Up for Cutdown"}) %>
+<i class="fas fa-chevron-left fa-4x"></i>
+    <div class = 'title-div'><h3 class="formTitle">Sign Up for CutDown</h3></div>
+    <p> <%=(typeof alertMsg!='undefined')? alertMsg:''%></p>
+    <form method = "POST" class = "main-form" action = '/register'>
+      <div class="form-group">
+        <label for="firstNameForm" class="form-label">First Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="firstNameForm"
+          name="firstName"
+          placeholder="Enter First Name"
+          required
+        />
+        <label for="lastNameForm" class="form-label">Last Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="lastNameForm"
+          name="lastName"
+          placeholder="Enter Last Name"
+          required
+        />
+        <label for="emailForm" class="form-label">Email address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="emailForm"
+          name = "emailForm"
+          aria-describedby="emailHelp"
+          placeholder="Enter email"
+          required
+        />
+        <small id="emailHelp" class="form-text text-muted"
+          >We'll never share your email with anyone else.</small
+        >
+        <div class="custom-control custom-switch">
+          <input
+            type="checkbox"
+            class="custom-control-input"
+            id="customSwitches"
+          />
+          <label
+            class="custom-control-label"
+            for="customSwitches"
+            style="margin-top: 1%"
+            >Please send reminders to my email</label
+          >
+      </div>
+      <label for="usernameForm" class="form-label">Username</label>
+      <input
+        type="text"
+        class="form-control"
+        id="usernameForm"
+        name="usernameForm"
+        placeholder="Username"
+        required
+      />
+      <label for="passwordForm" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="passwordForm"
+        name="passwordForm"
+        placeholder="Password"
+        onkeyup='check();'
+        required
+      />
+      <label for="confirmPasswordForm" class="form-label">Confirm Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="confirmPasswordForm"
+        name="confirmPasswordForm"
+        placeholder="Confirm Password"
+        onkeyup='check();'
+        required
+      />
+      <span id='message'></span>
+      <div class="submit-button">
+        <button type="submit" class="btn btn-primary" id = "submitButton" style='margin-top: 10%;'>Submit</button>
+      </div>
+    </form>
+    <script>
+    var check = function() {
+  if (document.getElementById('passwordForm').value ==
+    document.getElementById('confirmPasswordForm').value) {
+    document.getElementById('message').style.color = 'green';
+    document.getElementById('message').innerHTML = 'matching';
+    document.getElementById('submitButton').disabled = false
+  } else {
+    document.getElementById('message').style.color = 'red';
+    document.getElementById('message').innerHTML = 'not matching';
+    document.getElementById('submitButton').disabled = true
+  }
+}</script>
+      <%- include ('footer') %>

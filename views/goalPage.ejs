@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+  <head>
+    <title>Goal Page</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+      name="viewport"
+    />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <!--     Fonts and icons     -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
+    />
+
+    <!-- CSS Files -->
+    <link href="./assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="./assets/css/paper-kit.css" rel="stylesheet" />
+  </head>
+  <body style="height: 100%">
+    <i class="fas fa-chevron-left fa-3x"></i>
+    <div class="summary flex-center">
+      <h1 style="color: #e69500">Personal Goal Progress Report</h1>
+      <h2 style="color: #008000">You have saved a total of $000</h2>
+      <h3 style="color: #3eb489">
+        You are 00% of your way towards your goal of $500
+      </h3>
+      <h3 style="color: #008000">
+        At your current pace, you will reach your goal in 0 days
+      </h3>
+    </div>
+    <div class="summary flex-center" style="margin-top: 10vh">
+      <h3 style="color: #e69500">This is why you started</h3>
+      <form>
+        <textarea
+          rows="4"
+          cols="40"
+          name="comment"
+          form="usrform"
+          placeholder="Enter here"
+        ></textarea>
+      </form>
+    </div>
+    <div class="h-divider"></div>
+    <h3 style="color: #e69500">This is how far you've gotten</h3>
+    <div class="summary flex-center" style="margin-top: 0vh">
+      <h2 style="color: black">Games</h2>
+      <h3 style="color: #008000">
+        You have accumulated $140.10 by saving just on Games alone!
+      </h3>
+    </div>
+    <div class="h-divider"></div>
+    <div class="summary flex-center" style="margin-top: 3vh">
+      <h2 style="color: black">Alcohol</h2>
+      <h3 style="color: #008000">
+        You have accumulated $140.10 by saving just on Alcohol alone!
+      </h3>
+    </div>
+    <%- include ('footer') %>

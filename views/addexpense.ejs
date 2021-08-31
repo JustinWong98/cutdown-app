@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+  <head>
+    <title>Add an Expense</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+      name="viewport"
+    />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <!--     Fonts and icons     -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
+    />
+
+    <!-- CSS Files -->
+    <link href="./assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="./assets/css/paper-kit.css" rel="stylesheet" />
+  </head>
+  <body style="height: 100%">
+    <a href="home">
+      <i class="fas fa-chevron-left fa-3x"></i>
+    </a>
+    <div class="center-content">
+      <form method="POST" class="main-form no-margin" action="addexpense">
+        <div class="form-group form-check">
+          <label for="expenseAmt" class="form-label">Expense amount</label>
+          <input
+            type="number"
+            min="1"
+            step="any"
+            class="form-control"
+            id="expenseAmt"
+            name="expenseAmt"
+            placeholder="$20"
+            required
+          />
+          <label for="categoryID" class="form-label">Category</label>
+          <select name="categoryID">
+            <% categories.forEach((category) => { %>
+            <option value="<%= category.id %>"><%= category.name %></option>
+
+            <% }); %>
+          </select>
+          <div class="hidden">
+            <input type="date" name="date" id="myDate" />
+          </div>
+        </div>
+        <div class="next-button">
+          <button type="submit" class="btn btn-primary" style="margin-top: 10%">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+    <script>
+      function SetDate() {
+        var date = new Date();
+
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+
+        var today = year + "-" + month + "-" + day;
+
+        document.getElementById("myDate").value = today;
+      }
+    </script>
+    <body onload="SetDate();">
+      <%- include ('footer')%>
+

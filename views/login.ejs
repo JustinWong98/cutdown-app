@@ -1,0 +1,32 @@
+<%- include ('header', {title: "Login"}) %>
+<i class="fas fa-chevron-left fa-4x"></i>
+<div class="title-div"><h3 class="formTitle">Log in</h3></div>
+<div class="center-content">
+  <p><%=(typeof alertMsg!='undefined')? alertMsg:''%></p>
+</div>
+<form method="POST" class="main-form" action="/login">
+  <div class="form-group">
+    <label for="loginUsername" class="form-label">Username</label>
+    <input
+      type="text"
+      class="form-control"
+      id="loginUsername"
+      name="loginUsername"
+      placeholder="Username"
+    />
+    <label for="loginPassword" class="form-label">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="loginPassword"
+      name="loginPassword"
+      placeholder="Password"
+    />
+    <div class="submit-button">
+      <button type="submit" class="btn btn-primary" style="margin-top: 10%">
+        Submit
+      </button>
+    </div>
+  </div>
+</form>
+<%- include ('footer') %>
