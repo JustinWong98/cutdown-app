@@ -44,7 +44,7 @@ else { pgConnectionConfigs = {
 // create the var we'll use
 const pool = new Pool(pgConnectionConfigs);
 
-const PORT = 3004;
+const PORT = process.argv[2];
 
 const getHash = (input) => {
   // create new SHA object
