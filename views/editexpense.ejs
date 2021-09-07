@@ -1,0 +1,26 @@
+<%- include ('header', {title: "Edit your Expense"}) %> <%- include ('navbar')
+%>
+<div class="center-content">
+  <form method="POST" class="main-form no-margin" action="edit">
+    <div class="form-group form-check">
+      <label for="expenseAmt" class="form-label">Expense amount</label>
+      <input
+        type="number"
+        min="1"
+        step="any"
+        class="form-control"
+        id="expenseAmt"
+        name="expenseAmt"
+        value="<%= amount %>"
+        required
+      />
+    </div>
+    <div class="next-button">
+      <button type="submit" class="btn btn-primary" style="margin-top: 10%">
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
+
+<%- include ('footer')%>

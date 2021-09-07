@@ -1,0 +1,27 @@
+<%- include ('header', {title: "Your Expense List"}) %> <%- include ('navbar')
+%>
+<div class="container" style="width: 80%; margin-top: 5vh">
+  <% data.forEach((i) => { %>
+  <div class="row">
+    <div class="col-3 flex-center">
+      <h4><%= i.amount %></h4>
+    </div>
+    <div class="col-3 flex-center">
+      <h4><%= i.created_at %></h4>
+    </div>
+    <div class="col-3 flex-center">
+      <form action="catList/<%= i.id %>/delete" method="GET">
+        <input
+          type="submit"
+          class="btn btn-danger delete-button"
+          value="Delete"
+        />
+      </form>
+      <form action="catList/<%= i.id %>/edit" method="GET">
+        <input type="submit" class="btn btn-info edit-button" value="Edit" />
+      </form>
+    </div>
+  </div>
+  <% }); %>
+</div>
+<%-include ('footer') %>

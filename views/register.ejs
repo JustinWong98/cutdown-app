@@ -1,5 +1,7 @@
   <%- include ('header', {title: "Sign Up for Cutdown"}) %>
-<i class="fas fa-chevron-left fa-4x"></i>
+<a href="getcutdown">
+  <i class="fas fa-chevron-left fa-3x"></i>
+</a>
     <div class = 'title-div'><h3 class="formTitle">Sign Up for CutDown</h3></div>
     <p> <%=(typeof alertMsg!='undefined')? alertMsg:''%></p>
     <form method = "POST" class = "main-form" action = '/register'>

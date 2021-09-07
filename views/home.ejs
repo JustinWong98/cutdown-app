@@ -1,105 +1,280 @@
 <%- include ('header', {title: "CutDown"}) %> <%- include ('navbar') %>
+<div
+  class="summary flex-center animate__animated animate__fadeInDown"
+  style="animation-delay: 0.5s"
+>
+  <h1
+    class="summaryDisplay animate__animated animate__fadeInDown"
+    style="animation-delay: 0.9s"
+  >
+    Good day <%= homeData.first_name %> <%= homeData.last_name %>
+  </h1>
+  <h1 class="summaryDisplay">Your goal:</h1>
+  <h2 class="summaryDisplay">$<%= summary.targetSavings %></h2>
+  <h2 class="summaryDisplay">Your current savings (excluding this month):</h2>
+  <h2 class="summaryDisplay">$<%= summary.currentSavings %></h2>
+</div>
+<div
+  class="summary flex-center animate__animated animate__fadeInDown"
+  style="animation-delay: 1.3s"
+>
+  <h3 class="summaryDisplay">
+    You need $<%= summary.amountLeftToSave %> more.
+  </h3>
+</div>
+<div
+  class="summary flex-center animate__animated animate__fadeInDown"
+  style="animation-delay: 1.3s"
+>
+  <h3 class="summaryDisplay">
+    You are <%= summary.percentage %>% of the way there!
+  </h3>
+  <h3 class="summaryDisplay">
+    You have <%= dates.monthsLeft %> months left to achieve your goal.
+  </h3>
+</div>
+<div
+  class="summary flex-center animate__animated animate__fadeInDown catSummary"
+  style="animation-delay: 2s"
+>
+  <h3 class="summaryDisplay"><%= homeData.categories[0].name %></h3>
+  <h4 class="summaryDisplay"><%= progressReport.cat1 %></h4>
+</div>
+<div
+  class="summary flex-center animate__animated animate__fadeInDown catSummary"
+  style="animation-delay: 2s"
+>
+  <h3 class="summaryDisplay"><%= homeData.categories[1].name %></h3>
+  <h4 class="summaryDisplay"><%= progressReport.cat2 %></h4>
+</div>
+<div
+  class="summary flex-center animate__animated animate__fadeInDown catSummary"
+  style="animation-delay: 2s"
+>
+  <h3 class="summaryDisplay"><%= homeData.categories[2].name %></h3>
+  <h4 class="summaryDisplay"><%= progressReport.cat3 %></h4>
+</div>
 <div class="summary flex-center">
-  <h4 style="color: black; font-weight: bolder">
-    Good day <%= homeData.firstName %> <%= homeData.lastName %>
-  </h4>
   <a href="addexpense">
     <i class="fas fa-plus-circle fa-3x" style="margin: 3vh 0"></i>
   </a>
   <h4>Here are your expenditure breakdowns so far</h4>
+  <div class="chart">
+    <canvas id="myChart"></canvas>
+  </div>
+  <h2 style="font-weight: bolder">Monthly</h2>
+  <h4 style="font-style: italic" id="currentMonth">
+    <%= dates.currentMonth %>
+  </h4>
+  <div class="container" style="width: 80%; margin-top: 5vh">
+    <div class="row">
+      <div class="col-3 flex-center">
+        <h6>Name</h6>
+      </div>
+      <div class="col-3 flex-center">
+        <h6>Expense</h6>
+      </div>
+      <div class="col-3 flex-center">
+        <h6>Limit</h6>
+      </div>
+      <div class="col-3 flex-center">
+        <h6>Ratio</h6>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3 flex-center">
+        <a href="expenseList/<%= expenseIDs.dailyQueriesID[0] %>"
+          ><h4><%= homeData.categories[0].name %></h4></a
+        >
+      </div>
+      <div class="col-3 flex-center">
+        <h4>
+          $
+          <h4 id="cat1Expense"><%= monthlyExpenses.cat1 %></h4>
+        </h4>
+      </div>
+      <div class="col-3 flex-center">
+        <h4>$<%= homeData.categories[0].monthly_limit %></h4>
+      </div>
+      <div class="col-3 flex-center">
+        <h4><%= monthlyExpenses.cat1Ratio %></h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3 flex-center">
+        <a href="expenseList/<%= expenseIDs.dailyQueriesID[1] %>"
+          ><h4><%= homeData.categories[1].name %></h4></a
+        >
+      </div>
+      <div class="col-3 flex-center">
+        <h4>
+          $
+          <h4 id="cat2Expense"><%= monthlyExpenses.cat2 %></h4>
+        </h4>
+      </div>
+      <div class="col-3 flex-center">
+        <h4>$<%= homeData.categories[1].monthly_limit %></h4>
+      </div>
+      <div class="col-3 flex-center">
+        <h4><%= monthlyExpenses.cat2Ratio %></h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3 flex-center">
+        <a href="expenseList/<%= expenseIDs.dailyQueriesID[2] %>"
+          ><h4><%= homeData.categories[2].name %></h4></a
+        >
+      </div>
+      <div class="col-3 flex-center">
+        <h4>
+          $
+          <h4 id="cat3Expense"><%= monthlyExpenses.cat3 %></h4>
+        </h4>
+      </div>
+      <div class="col-3 flex-center">
+        <h4>$<%= homeData.categories[2].monthly_limit %></h4>
+      </div>
+      <div class="col-3 flex-center">
+        <h4><%= monthlyExpenses.cat3Ratio %></h4>
+      </div>
+    </div>
+  </div>
+  <div class="h-divider"></div>
+  <h2 style="font-weight: bolder">Weekly</h2>
+  <h4 style="font-style: italic" id="currentWeek">
+    <%= dates.mondayDisplay %> TO <%= dates.sunday %>
+  </h4>
+  <div class="container" style="width: 80%; margin-top: 5vh">
+    <div class="row">
+      <div class="col-3 flex-center">
+        <h6>Name</h6>
+      </div>
+      <div class="col-3 flex-center">
+        <h6>Expense</h6>
+      </div>
+      <div class="col-3 flex-center">
+        <h6>Limit</h6>
+      </div>
+      <div class="col-3 flex-center">
+        <h6>Ratio</h6>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3 flex-center">
+        <a href="expenseList/<%= expenseIDs.dailyQueriesID[0] %>"
+          ><h4 id="cat1Name"><%= homeData.categories[0].name %></h4></a
+        >
+      </div>
+      <div class="col-3 flex-center"><h4>$<%= weeklyExpenses.cat1 %></h4></div>
+      <div class="col-3 flex-center">
+        <h4>$<%= homeData.categories[0].weekly_limit %></h4>
+      </div>
+      <div class="col-3 flex-center">
+        <h4><%= weeklyExpenses.cat1Ratio %></h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3 flex-center">
+        <a href="expenseList/<%= expenseIDs.dailyQueriesID[1] %>"
+          ><h4 id="cat2Name"><%= homeData.categories[1].name %></h4></a
+        >
+      </div>
+      <div class="col-3 flex-center"><h4>$<%= weeklyExpenses.cat2 %></h4></div>
+      <div class="col-3 flex-center">
+        <h4>$<%= homeData.categories[1].weekly_limit %></h4>
+      </div>
+      <div class="col-3 flex-center">
+        <h4><%= weeklyExpenses.cat2Ratio %></h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3 flex-center">
+        <a href="expenseList/<%= expenseIDs.dailyQueriesID[2] %>"
+          ><h4 id="cat3Name"><%= homeData.categories[2].name %></h4></a
+        >
+      </div>
+      <div class="col-3 flex-center"><h4>$<%= weeklyExpenses.cat3 %></h4></div>
+      <div class="col-3 flex-center">
+        <h4>$<%= homeData.categories[2].weekly_limit %></h4>
+      </div>
+      <div class="col-3 flex-center">
+        <h4><%= weeklyExpenses.cat3Ratio %></h4>
+      </div>
+    </div>
+  </div>
+  <div class="h-divider"></div>
   <h2 style="font-weight: bolder">Daily</h2>
-  <h4 style="font-style: italic">26 August 2021</h4>
+  <h4 style="font-style: italic" id="currentDay"><%= dates.currentDay %></h4>
 </div>
 <div class="container" style="width: 80%; margin-top: 5vh">
   <div class="row">
-    <div class="col-3 flex-center"><h4><%= homeData.cat1Name %></h4></div>
-    <div class="col-3 flex-center">
+    <div class="col-6 flex-center">
+      <h6>Name</h6>
+    </div>
+    <div class="col-6 flex-center">
+      <h6>Expense</h6>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 flex-center">
+      <a href="expenseList/<%= expenseIDs.dailyQueriesID[0] %>"
+        ><h4><%= homeData.categories[0].name %></h4></a
+      >
+    </div>
+    <div class="col-6 flex-center">
       <h4>$<%= dailyExpenses.cat1 %></h4>
     </div>
-    <div class="col-3 flex-center">
-      <h4>$<%= homeData.cat1DailyLimit %></h4>
+  </div>
+  <div class="row">
+    <div class="col-6 flex-center">
+      <a href="expenseList/<%= expenseIDs.dailyQueriesID[1] %>"
+        ><h4><%= homeData.categories[1].name %></h4></a
+      >
     </div>
-    <div class="col-3 flex-center">
-      <h4><%= dailyExpenses.cat1DailyRatio %></h4>
+    <div class="col-6 flex-center">
+      <h4>$<%= dailyExpenses.cat2 %></h4>
     </div>
   </div>
   <div class="row">
-    <div class="col-3 flex-center"><h4><%= homeData.cat2Name %></h4></div>
-    <div class="col-3 flex-center"><h4>$<%= dailyExpenses.cat2 %></h4></div>
-    <div class="col-3 flex-center">
-      <h4>$<%= homeData.cat2DailyLimit %></h4>
+    <div class="col-6 flex-center">
+      <a href="expenseList/<%= expenseIDs.dailyQueriesID[2] %>"
+        ><h4><%= homeData.categories[2].name %></h4></a
+      >
     </div>
-    <div class="col-3 flex-center">
-      <h4><%= dailyExpenses.cat2DailyRatio %></h4>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-3 flex-center"><h4><%= homeData.cat3Name %></h4></div>
-    <div class="col-3 flex-center"><h4>$<%= dailyExpenses.cat3 %></h4></div>
-    <div class="col-3 flex-center">
-      <h4>$<%= homeData.cat3DailyLimit %></h4>
-    </div>
-    <div class="col-3 flex-center">
-      <h4><%= dailyExpenses.cat3DailyRatio %></h4>
-    </div>
+    <div class="col-6 flex-center"><h4>$<%= dailyExpenses.cat3 %></h4></div>
   </div>
 </div>
-<div class="h-divider"></div>
-<h2 style="font-weight: bolder">Weekly</h2>
-<!-- <h4 style="font-style: italic">26 August 2021</h4> -->
-<div class="container" style="width: 80%; margin-top: 5vh">
-  <div class="row">
-    <div class="col-3 flex-center"><h4><%= homeData.cat1Name %></h4></div>
-    <div class="col-3 flex-center"><h4>$<%= dailyExpenses.cat1 %></h4></div>
-    <div class="col-3 flex-center">
-      <h4>$<%= homeData.cat1WeeklyLimit %></h4>
-    </div>
-    <div class="col-3 flex-center"><h4>75%</h4></div>
-  </div>
-  <div class="row">
-    <div class="col-3 flex-center"><h4><%= homeData.cat2Name %></h4></div>
-    <div class="col-3 flex-center"><h4>$<%= dailyExpenses.cat2 %></h4></div>
-    <div class="col-3 flex-center">
-      <h4>$<%= homeData.cat2WeeklyLimit %></h4>
-    </div>
-    <div class="col-3 flex-center"><h4>75%</h4></div>
-  </div>
-  <div class="row">
-    <div class="col-3 flex-center"><h4><%= homeData.cat3Name %></h4></div>
-    <div class="col-3 flex-center"><h4>$<%= dailyExpenses.cat3 %></h4></div>
-    <div class="col-3 flex-center">
-      <h4>$<%= homeData.cat3WeeklyLimit %></h4>
-    </div>
-    <div class="col-3 flex-center"><h4>75%</h4></div>
-  </div>
-</div>
-<div class="h-divider"></div>
-<h2 style="font-weight: bolder">Monthly</h2>
-<!-- <h4 style="font-style: italic">26 August 2021</h4> -->
-<div class="container" style="width: 80%; margin-top: 5vh">
-  <div class="row">
-    <div class="col-3 flex-center"><h4><%= homeData.cat1Name %></h4></div>
-    <div class="col-3 flex-center"><h4>$15.00</h4></div>
-    <div class="col-3 flex-center">
-      <h4>$<%= homeData.cat1MonthlyLimit %></h4>
-    </div>
-    <div class="col-3 flex-center"><h4>75%</h4></div>
-  </div>
-  <div class="row">
-    <div class="col-3 flex-center"><h4><%= homeData.cat2Name %></h4></div>
-    <div class="col-3 flex-center"><h4>$15.00</h4></div>
-    <div class="col-3 flex-center">
-      <h4>$<%= homeData.cat2MonthlyLimit %></h4>
-    </div>
-    <div class="col-3 flex-center"><h4>75%</h4></div>
-  </div>
-  <div class="row">
-    <div class="col-3 flex-center"><h4><%= homeData.cat3Name %></h4></div>
-    <div class="col-3 flex-center"><h4>$15.00</h4></div>
-    <div class="col-3 flex-center">
-      <h4>$<%= homeData.cat3MonthlyLimit %></h4>
-    </div>
-    <div class="col-3 flex-center"><h4>75%</h4></div>
-  </div>
-</div>
+<script>
+  var ctx = document.getElementById("myChart").getContext("2d");
+  const cat1Name = document.getElementById("cat1Name").innerHTML;
+  const cat2Name = document.getElementById("cat2Name").innerHTML;
+  const cat3Name = document.getElementById("cat3Name").innerHTML;
+  const cat1Expense = document.getElementById("cat1Expense").innerHTML;
+  const cat2Expense = document.getElementById("cat2Expense").innerHTML;
+  const cat3Expense = document.getElementById("cat3Expense").innerHTML;
+  var myChart = new Chart(ctx, {
+    type: "pie",
+    data: {
+      labels: [cat1Name, cat2Name, cat3Name],
+      datasets: [
+        {
+          label: "# of Votes",
+          data: [cat1Expense, cat2Expense, cat3Expense],
+          backgroundColor: [
+            "rgba(255, 99, 132, 0.2)",
+            "rgba(54, 162, 235, 0.2)",
+            "rgba(255, 206, 86, 0.2)",
+          ],
+          borderColor: [
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+          ],
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: { responsive: true, maintainAspectRatio: true },
+  });
+</script>
 <%- include ('footer') %>

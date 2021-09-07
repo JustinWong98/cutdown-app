@@ -1,10 +1,10 @@
-<%- include ('header', {title: "Setting your goals"}) %>
+<%- include ('header', {title: "Edit your goals"}) %> <%- include ('navbar') %>
 <a href="getcutdown">
 <i class="fas fa-chevron-left fa-3x"></i>
 </a>
 <div class="container goal-container">
   <div class="row">
-    <form method = "POST" id ="goalForm" class ="main-form" action = '/goalsetting'>
+    <form method = "POST" id ="goalForm" class ="main-form" action = '/editGoalSetting'>
       <div
   class="title-div font-weight-bolder"
   style="font-size: medium;"
@@ -21,7 +21,16 @@
   How much does it cost?
 </div>
 <div class="summary flex-center">
-      <input type = "number" name = "goalCost" id = "goalCost" min = "1" max = "10000">
+      <input type = "number" name = "goalCost" id = "goalCost" min = "1" max = "10000" placeholder = "<%= target_savings%>">
+    </div>
+    <div
+  class="title-div font-weight-bolder"
+  style="font-size: medium;"
+>
+  How much have you currently saved up for that?
+</div>
+    <div class="summary flex-center">
+      <input type = "number" name = "currentSavings" id = "currentSavings" min = "1" max = "10000" placeholder = "<%= current_savings%>">
     </div>
   </div>
 </div>
@@ -39,8 +48,7 @@
     name="mainGoal"
     id = "mainGoal"
     form="goalForm"
-    placeholder="Enter here"
-  ></textarea>
+  ><%= main_goal %></textarea>
   </div>
   <div class ="hidden">
  <input type="date" name="date" id="myDate" />
@@ -50,7 +58,7 @@
   class="title-div font-weight-bolder"
   style="font-size: medium; padding: 0 10% 0 15%;"
 >
-  In how many months do you wish to achieve your goal(s)?
+  In how many months do you wish to achieve your goal(s)? Note that we will still take into account the number of days you have saved already.
 </div>
 <div class="d-flex justify-content-center my-4">
     <div class="d-flex justify-content-center my-4 flex-center summary">
@@ -62,6 +70,7 @@
         step="1"
         id="months-goal"
         name="months-goal"
+        value = "<%= days_goal/30 %>"
       />
       <div class="font-weight-bold text-primary ml-2 mt-1 valueSpan summary" id = 'months-display'>
       </div>

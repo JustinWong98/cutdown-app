@@ -1,0 +1,144 @@
+<%- include ('header', {title: "Edit Expenses"}) %> <%- include ('navbar') %>
+<a href="goalsetting">
+  <i class="fas fa-chevron-left fa-3x"></i>
+</a>
+<div class="title-div"></div>
+<form
+  method="POST"
+  class="main-form"
+  action="/editQuestionnaire"
+  onsubmit="return check()"
+>
+  <div class="form-group form-check">
+    <label for="monthlyExpense" class="form-label"
+      >Roughly how much do you spend on non-essentials a month?</label
+    >
+    <input
+      type="number"
+      min="1"
+      step="any"
+      class="form-control"
+      id="monthlyExpense"
+      name="monthlyExpense"
+      placeholder="$200"
+      required
+    />
+    <div class="row-div form-title-div">
+      <div class="form-category-title">Category</div>
+      <div class="form-monthly-title">Expenditure<br />/Month</div>
+      <div class="form-priority-title">Prioritize one to cut down on</div>
+    </div>
+    <div class="row-div">
+      <input
+        type="text"
+        class="form-control"
+        id="cat1Name"
+        name="cat1Name"
+        value="<%= cat1Name %>"
+        res
+        required
+      />
+      <input
+        type="number"
+        min="1"
+        step="any"
+        class="form-control"
+        id="cat1Amt"
+        name="cat1Amt"
+        value="<%= cat1InitialAmt %>"
+        required
+      />
+      <div>
+        <input
+          class="custom-control-input"
+          name="catCheck"
+          type="radio"
+          id="cat1Check"
+          value="cat1Check"
+          required
+        />
+        <label class="custom-control-label" for="cat1Check"> </label>
+      </div>
+    </div>
+    <div class="row-div">
+      <input
+        type="text"
+        class="form-control"
+        id="cat2Name"
+        name="cat2Name"
+        value="<%= cat2Name %>"
+        required
+      />
+      <input
+        type="number"
+        min="1"
+        step="any"
+        class="form-control"
+        id="cat2Amt"
+        name="cat2Amt"
+        value="<%= cat2InitialAmt %>"
+        required
+      />
+      <div>
+        <input
+          class="custom-control-input"
+          name="catCheck"
+          type="radio"
+          id="cat2Check"
+          value="cat2Check"
+        />
+        <label class="custom-control-label" for="cat2Check"> </label>
+      </div>
+    </div>
+    <div class="row-div">
+      <input
+        type="text"
+        class="form-control"
+        id="cat3Name"
+        name="cat3Name"
+        value="<%= cat3Name %>"
+        required
+      />
+      <input
+        type="number"
+        min="1"
+        step="any"
+        class="form-control"
+        id="cat3Amt"
+        name="cat3Amt"
+        placeholder="<%= cat3InitialAmt %>"
+        required
+      />
+      <div>
+        <input
+          class="custom-control-input"
+          name="catCheck"
+          type="radio"
+          id="cat3Check"
+          value="cat3Check"
+        />
+        <label class="custom-control-label" for="cat3Check"> </label>
+      </div>
+    </div>
+    <div class="submit-button">
+      <button type="submit" class="btn btn-primary" style="margin-top: 10%">
+        Next
+      </button>
+    </div>
+  </div>
+</form>
+<script>
+  var check = function () {
+    console.log("ran");
+    if (
+      Number(document.getElementById("cat1Amt").value) +
+        Number(document.getElementById("cat2Amt").value) +
+        Number(document.getElementById("cat3Amt").value) !==
+      Number(document.getElementById("monthlyExpense").value)
+    ) {
+      alert("Please make sure that the amounts add up!");
+      return false;
+    }
+  };
+</script>
+<%- include ('footer') %>
